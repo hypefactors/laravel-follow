@@ -7,7 +7,7 @@
 
 The package description goes here.
 
-This package requires PHP 7.0+ and follows the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP.
+This package requires PHP 5.6.4 or higher, and follows the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP.
 
 ## Laravel Version Compatibility
 
