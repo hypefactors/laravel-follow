@@ -1,6 +1,6 @@
 {
     "name": "hypefactors/laravel-follow",
-    "description": "Follow repository for all Laravel packages created by Hypefactors.",
+    "description": "Laravel 5.4 Follow System for Eloquent models.",
     "keywords": [
         "php", "hypefactors", "laravel", "follow"
     ],
