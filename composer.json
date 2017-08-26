@@ -1,0 +1,48 @@
+{
+    "name": "hypefactors/laravel-follow",
+    "description": "Follow repository for all Laravel packages created by Hypefactors.",
+    "keywords": [
+        "php", "hypefactors", "laravel", "follow"
+    ],
+    "homepage": "https://hypefactors.com",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Hypefactors ApS",
+            "email": "hello@hypefactors.com",
+            "homepage": "https://hypefactors.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "5.4.*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "mockery/mockery": "^0.9",
+        "orchestra/testbench": "^3.4",
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": { "Hypefactors\\Laravel\\Follow\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Hypefactors\\Laravel\\Follow\\Tests\\": "tests/" }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "component": "package",
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating",
+        "test": "vendor/bin/phpunit --verbose --colors=always"
+    },
+    "minimum-stability": "stable"
+}
