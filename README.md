@@ -34,7 +34,7 @@ Please refer to the [Change Log](CHANGELOG.md) for a full history of the project
 
 ## Security
 
-If you discover any security related issues, please email hello@hypefactors.com instead of using the issue tracker.
+If you discover any security related issues, please email support@hypefactors.com instead of using the issue tracker.
 
 ## License
 
