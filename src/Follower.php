@@ -31,14 +31,39 @@ class Follower extends Model
     }
 
     /**
-     * Finds the followed entities for the given type.
+     * Finds the entities that are followers for the given type.
      *
      * @param \Illuminate\Database\Eloquent\Builder      $query
      * @param \Illuminate\Database\Eloquent\Model|string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWhereType(Builder $query, $type)
+    public function scopeWhereFollowerType(Builder $query, $type)
+    {
+        // Determine if the given type is a valid class
+        if (class_exists($type)) {
+            $type = new $type;
+        }
+
+        // Determine if the given type is an instance of an
+        // Eloquent Model and if it is, we'll obtain the
+        // corresponding morphed class name from it.
+        if (is_a($type, Model::class)) {
+            $type = $type->getMorphClass();
+        }
+
+        return $query->where('follower_type', $type);
+    }
+
+    /**
+     * Finds the entities that are being followed for the given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder      $query
+     * @param \Illuminate\Database\Eloquent\Model|string $type
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereFollowableType(Builder $query, $type)
     {
         // Determine if the given type is a valid class
         if (class_exists($type)) {
