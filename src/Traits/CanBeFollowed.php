@@ -5,9 +5,22 @@ namespace Hypefactors\Laravel\Follow\Traits;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Hypefactors\Laravel\Follow\Follower;
+use Illuminate\Database\Eloquent\Builder;
 
 trait CanBeFollowed
 {
+    /**
+     * Boots the trait.
+     *
+     * @return void
+     */
+    public static function bootCanBeFollowed()
+    {
+        static::deleted(function (Model $entity) {
+            $entity->followables()->delete();
+        });
+    }
+
     /**
      * Returns the followers that this entity is associated with.
      *
@@ -25,7 +38,7 @@ trait CanBeFollowed
      */
     public function hasFollowers()
     {
-        return (bool) $this->followers->count();
+        return (bool) $this->followables()->withoutTrashed()->count();
     }
 
     /**
@@ -37,7 +50,9 @@ trait CanBeFollowed
      */
     public function hasFollower(Model $entity)
     {
-        return (bool) $this->findFollower($entity);
+        $follower = $this->findFollower($entity);
+
+        return (bool) $follower && ! $follower->trashed();
     }
 
     /**
@@ -49,7 +64,7 @@ trait CanBeFollowed
      */
     public function addFollower(Model $entity)
     {
-        $followed = $this->findFollower($entity);
+        $followed = $this->followables()->withTrashed()->whereFollowerEntity($entity)->first();
 
         // If the entity was previously a follower of this entity but
         // later decided to unfollow it, we still have that entry,
@@ -63,7 +78,7 @@ trait CanBeFollowed
             $follower->follower_id = $entity->getKey();
             $follower->follower_type = $entity->getMorphClass();
 
-            $this->followers()->save($follower);
+            $this->followables()->save($follower);
         }
 
         return $this->fresh();
@@ -113,37 +128,38 @@ trait CanBeFollowed
     }
 
     /**
-     * Returns the count of gained followers (created) over the given time period.
+     * Finds the gained followers (created) over the given time period.
      *
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \DateTime                             $startDate
+     * @param \DateTime                             $endDate
      *
      * @return int
      */
-    public function countGainedFollowers(DateTime $startDate, DateTime $endDate)
+    public function scopeGainedFollowers(Builder $query, DateTime $startDate, DateTime $endDate)
     {
         return $this
             ->followables()
+            ->withoutTrashed()
             ->whereBetween('created_at', [$startDate, $endDate])
-            ->count()
         ;
     }
 
     /**
-     * Returns the count of lost followers (deleted) over the given time period.
+     * Finds the lost followers (deleted) over the given time period.
      *
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \DateTime                             $startDate
+     * @param \DateTime                             $endDate
      *
      * @return int
      */
-    public function countLostFollowers(DateTime $startDate, DateTime $endDate)
+    public function scopeLostFollowers(Builder $query, DateTime $startDate, DateTime $endDate)
     {
         return $this
             ->followables()
             ->onlyTrashed()
             ->whereBetween('deleted_at', [$startDate, $endDate])
-            ->count()
         ;
     }
 
@@ -154,8 +170,8 @@ trait CanBeFollowed
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    protected function findFollower(Model $entity)
+    public function findFollower(Model $entity)
     {
-        return $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
+        return $this->followables()->withTrashed()->whereFollowerEntity($entity)->first();
     }
 }

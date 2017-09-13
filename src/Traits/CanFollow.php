@@ -8,6 +8,18 @@ use Hypefactors\Laravel\Follow\Follower;
 trait CanFollow
 {
     /**
+     * Boots the trait.
+     *
+     * @return void
+     */
+    public static function bootCanFollow()
+    {
+        static::deleted(function (Model $entityModel) {
+            $entityModel->followings()->delete();
+        });
+    }
+
+    /**
      * Returns the entities that this entity is following.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -26,7 +38,9 @@ trait CanFollow
      */
     public function isFollowing(Model $entity)
     {
-        return (bool) $this->following()->whereFollowableEntity($entity)->first();
+        $following = $this->findFollowing($entity);
+
+        return $following && ! $following->trashed();
     }
 
     /**
@@ -51,7 +65,7 @@ trait CanFollow
             $follower->followable_id = $entity->getKey();
             $follower->followable_type = $entity->getMorphClass();
 
-            $this->following()->save($follower);
+            $this->followings()->save($follower);
         }
 
         return $this->fresh();
@@ -66,22 +80,24 @@ trait CanFollow
      */
     public function unfollow(Model $entity)
     {
-        if ($this->isFollowing($entity)) {
-            $this->following()->whereFollowableEntity($entity)->delete();
+        $following = $this->findFollowing($entity);
+
+        if ($following && ! $following->trashed()) {
+            $this->followings()->whereFollowableEntity($entity)->delete();
         }
 
         return $this->fresh();
     }
 
     /**
-     * Returns the given entity record if this entity is following it.
+     * Returns the given following entity record if this entity is following it.
      *
      * @param \Illuminate\Database\Eloquent\Model $entity
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    protected function findFollowing(Model $entity)
+    public function findFollowing(Model $entity)
     {
-       return $this->following()->withTrashed()->whereFollowableEntity($entity)->first();
+       return $this->followings()->withTrashed()->whereFollowableEntity($entity)->first();
     }
 }
