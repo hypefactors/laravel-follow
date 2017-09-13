@@ -88,11 +88,11 @@ class CanBeFollowedTest extends FunctionalTestCase
         $user = factory(UserStub::class)->create();
         $company = factory(CompanyStub::class)->create();
 
-        $startDate = Carbon::now()->subDays(3);
-        $endDate = Carbon::now();
-
         $user->follow($company);
         $user->unfollow($company);
+
+        $startDate = Carbon::now()->subDays(3);
+        $endDate = Carbon::now();
 
         $lostFollowersCount = $company->lostFollowers($startDate, $endDate)->count();
 
