@@ -102,31 +102,6 @@ trait CanBeFollowed
         return $this->fresh();
     }
 
-    # Needs to be redone!
-    public function syncFollowers(array $entities)
-    {
-        $followers = array_pull($attributes, 'followers', []);
-
-        $currentFollowers = $this->followers->pluck('follower_id')->all();
-
-        $followersToAdd = array_diff($followers, $currentFollowers);
-        $followersToDel = array_diff($currentFollowers, $followers);
-
-        // Add followers
-        foreach ($this->userModel->whereIn('id', $followersToAdd)->get() as $user) {
-            $this->addFollower($user);
-        }
-
-        // Remove followers
-        foreach ($this->userModel->whereIn('id', $followersToDel)->get() as $user) {
-            $this->removeFollower($user);
-        }
-
-        $this->load('followers');
-
-        return $this;
-    }
-
     /**
      * Finds the gained followers (created) over the given time period.
      *
