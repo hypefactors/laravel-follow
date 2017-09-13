@@ -1,10 +1,11 @@
 <?php
 
-namespace Hypefactors\Laravel\Follow\Tests;
+namespace Hypefactors\Laravel\Follow\Tests\Traits;
 
 use Carbon\Carbon;
 use Hypefactors\Laravel\Follow\Tests\Stubs\UserStub;
 use Hypefactors\Laravel\Follow\Tests\Stubs\CompanyStub;
+use Hypefactors\Laravel\Follow\Tests\FunctionalTestCase;
 
 class CanFollowTest extends FunctionalTestCase
 {
