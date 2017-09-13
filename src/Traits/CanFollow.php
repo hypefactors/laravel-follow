@@ -30,6 +30,16 @@ trait CanFollow
     }
 
     /**
+     * Determines if the entity has followings associated.
+     *
+     * @return bool
+     */
+    public function hasFollowings()
+    {
+        return (bool) $this->followings()->withoutTrashed()->count();
+    }
+
+    /**
      * Determines if the entity is following the given entity.
      *
      * @param \Illuminate\Database\Eloquent\Model $entity
