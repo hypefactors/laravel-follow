@@ -34,7 +34,7 @@ class Follower extends Model
      * Finds the followed entities for the given type.
      *
      * @param \Illuminate\Database\Eloquent\Builder      $query
-     * @param string|\Illuminate\Database\Eloquent\Model $type
+     * @param \Illuminate\Database\Eloquent\Model|string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
