@@ -52,4 +52,17 @@ class CanFollowTest extends FunctionalTestCase
 
         $this->assertTrue($user->isFollowing($company));
     }
+
+    /** @test */
+    public function deleting_a_follower_entity_deletes_the_following_records()
+    {
+        $user = factory(UserStub::class)->create();
+        $company = factory(CompanyStub::class)->create();
+
+        $user->follow($company);
+
+        $user->delete();
+
+        $this->assertFalse($company->hasFollowers());
+    }
 }

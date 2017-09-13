@@ -98,4 +98,17 @@ class CanBeFollowedTest extends FunctionalTestCase
 
         $this->assertSame(1, $lostFollowersCount);
     }
+
+    /** @test */
+    public function deleting_a_following_entity_deletes_the_following_records()
+    {
+        $user = factory(UserStub::class)->create();
+        $company = factory(CompanyStub::class)->create();
+
+        $user->follow($company);
+
+        $company->delete();
+
+        $this->assertFalse($user->hasFollowings());
+    }
 }
