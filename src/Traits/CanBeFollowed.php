@@ -17,7 +17,7 @@ trait CanBeFollowed
     public static function bootCanBeFollowed()
     {
         static::deleted(function (Model $entity) {
-            $entity->followables()->delete();
+            $entity->followers()->delete();
         });
     }
 
@@ -26,7 +26,7 @@ trait CanBeFollowed
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function followables()
+    public function followers()
     {
         return $this->morphMany(Follower::class, 'followable');
     }
@@ -38,7 +38,7 @@ trait CanBeFollowed
      */
     public function hasFollowers()
     {
-        return (bool) $this->followables()->withoutTrashed()->count();
+        return (bool) $this->followers()->withoutTrashed()->count();
     }
 
     /**
@@ -64,7 +64,7 @@ trait CanBeFollowed
      */
     public function addFollower(Model $entity)
     {
-        $followed = $this->followables()->withTrashed()->whereFollowerEntity($entity)->first();
+        $followed = $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
 
         // If the entity was previously a follower of this entity but
         // later decided to unfollow it, we still have that entry,
@@ -78,7 +78,7 @@ trait CanBeFollowed
             $follower->follower_id = $entity->getKey();
             $follower->follower_type = $entity->getMorphClass();
 
-            $this->followables()->save($follower);
+            $this->followers()->save($follower);
         }
 
         return $this->fresh();
@@ -114,7 +114,7 @@ trait CanBeFollowed
     public function scopeGainedFollowers(Builder $query, DateTime $startDate, DateTime $endDate)
     {
         return $this
-            ->followables()
+            ->followers()
             ->withoutTrashed()
             ->whereBetween('created_at', [$startDate, $endDate])
         ;
@@ -132,7 +132,7 @@ trait CanBeFollowed
     public function scopeLostFollowers(Builder $query, DateTime $startDate, DateTime $endDate)
     {
         return $this
-            ->followables()
+            ->followers()
             ->onlyTrashed()
             ->whereBetween('deleted_at', [$startDate, $endDate])
         ;
@@ -147,6 +147,6 @@ trait CanBeFollowed
      */
     public function findFollower(Model $entity)
     {
-        return $this->followables()->withTrashed()->whereFollowerEntity($entity)->first();
+        return $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
     }
 }
