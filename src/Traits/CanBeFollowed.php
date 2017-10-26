@@ -67,16 +67,14 @@ trait CanBeFollowed
     {
         $followed = $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
 
-        // If the entity was previously a follower of this entity but
-        // later decided to unfollow it, we still have that entry,
-        // it just needs to be restored.
+        // If the entity was previously a follower of this entity
+        // but later decided to unfollow it, we still have that
+        // entry, it just needs to be restored.
         if ($followed && $followed->trashed()) {
             $followed->restore();
-
-        // The entity was never a follower of this entity
         } elseif (! $followed) {
-            $follower = new Follower;
-            $follower->follower_id = $entity->getKey();
+            $follower                = new Follower();
+            $follower->follower_id   = $entity->getKey();
             $follower->follower_type = $entity->getMorphClass();
 
             $this->followers()->save($follower);

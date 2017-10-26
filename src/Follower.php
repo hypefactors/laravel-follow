@@ -44,7 +44,7 @@ class Follower extends Model
     {
         // Determine if the given type is a valid class
         if (class_exists($type)) {
-            $type = new $type;
+            $type = new $type();
         }
 
         // Determine if the given type is an instance of an
@@ -69,7 +69,7 @@ class Follower extends Model
     {
         // Determine if the given type is a valid class
         if (class_exists($type)) {
-            $type = new $type;
+            $type = new $type();
         }
 
         // Determine if the given type is an instance of an

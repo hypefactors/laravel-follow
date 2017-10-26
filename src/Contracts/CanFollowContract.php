@@ -2,9 +2,6 @@
 
 namespace Hypefactors\Laravel\Follow\Contracts;
 
-use DateTime;
-use Illuminate\Database\Eloquent\Builder;
-
 interface CanFollowContract
 {
     /**

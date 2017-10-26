@@ -69,11 +69,9 @@ trait CanFollow
         // we still have the relationship, it just needs to be restored.
         if ($following && $following->trashed()) {
             $following->restore();
-
-        // The entity never followed this entity
         } elseif (! $following) {
-            $follower = new Follower();
-            $follower->followable_id = $entity->getKey();
+            $follower                  = new Follower();
+            $follower->followable_id   = $entity->getKey();
             $follower->followable_type = $entity->getMorphClass();
 
             $this->followings()->save($follower);
@@ -109,6 +107,6 @@ trait CanFollow
      */
     public function findFollowing(CanBeFollowedContract $entity)
     {
-       return $this->followings()->withTrashed()->whereFollowableEntity($entity)->first();
+        return $this->followings()->withTrashed()->whereFollowableEntity($entity)->first();
     }
 }
