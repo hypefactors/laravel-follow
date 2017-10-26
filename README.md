@@ -24,11 +24,7 @@ You can install the package via composer:
 composer require hypefactors/laravel-follow
 ```
 
-Next, open your `config/app.php` file and add the service provider to the `providers` array:
-
-```
-Hypefactors\Laravel\Follow\FollowServiceProvider::class,
-```
+The package will be automatically registered.
 
 Now you need to run the migrations:
 
