@@ -4,6 +4,7 @@ namespace Hypefactors\Laravel\Follow\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Hypefactors\Laravel\Follow\Follower;
+use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
 
 trait CanFollow
 {
@@ -42,11 +43,11 @@ trait CanFollow
     /**
      * Determines if the entity is following the given entity.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return bool
      */
-    public function isFollowing(Model $entity)
+    public function isFollowing(CanBeFollowedContract $entity)
     {
         $following = $this->findFollowing($entity);
 
@@ -56,11 +57,11 @@ trait CanFollow
     /**
      * Follows the given entity.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function follow(Model $entity)
+    public function follow(CanBeFollowedContract $entity)
     {
         $following = $this->findFollowing($entity);
 
@@ -84,11 +85,11 @@ trait CanFollow
     /**
      * Unfollows the given entity.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function unfollow(Model $entity)
+    public function unfollow(CanBeFollowedContract $entity)
     {
         $following = $this->findFollowing($entity);
 
@@ -102,11 +103,11 @@ trait CanFollow
     /**
      * Returns the given following entity record if this entity is following it.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function findFollowing(Model $entity)
+    public function findFollowing(CanBeFollowedContract $entity)
     {
        return $this->followings()->withTrashed()->whereFollowableEntity($entity)->first();
     }

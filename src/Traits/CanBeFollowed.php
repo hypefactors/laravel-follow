@@ -6,6 +6,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Hypefactors\Laravel\Follow\Follower;
 use Illuminate\Database\Eloquent\Builder;
+use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 
 trait CanBeFollowed
 {
@@ -44,11 +45,11 @@ trait CanBeFollowed
     /**
      * Determines if the given entity is a follower of this entity.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return bool
      */
-    public function hasFollower(Model $entity)
+    public function hasFollower(CanFollowContract $entity)
     {
         $follower = $this->findFollower($entity);
 
@@ -58,11 +59,11 @@ trait CanBeFollowed
     /**
      * Adds the given entity as a follower of this entity.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function addFollower(Model $entity)
+    public function addFollower(CanFollowContract $entity)
     {
         $followed = $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
 
@@ -87,11 +88,11 @@ trait CanBeFollowed
     /**
      * Removes the given entity from being a follower of this entity.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function removeFollower(Model $entity)
+    public function removeFollower(CanFollowContract $entity)
     {
         $followed = $this->findFollower($entity);
 
@@ -141,11 +142,11 @@ trait CanBeFollowed
     /**
      * Returns the given entity record if this entity is being followed by it.
      *
-     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function findFollower(Model $entity)
+    public function findFollower(CanFollowContract $entity)
     {
         return $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
     }
