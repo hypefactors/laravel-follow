@@ -4,15 +4,18 @@
 $fixers = [
     // General Standards
     '@Symfony' => true,
+    '@PSR1' => true,
     '@PSR2' => true,
 
     // Generic
     'array_syntax' => [ 'syntax' => 'short' ],
+    'combine_consecutive_issets' => true,
     'combine_consecutive_unsets' => true,
     'linebreak_after_opening_tag' => true,
     'list_syntax' => [ 'syntax' => 'long' ],
     'no_extra_consecutive_blank_lines' => [ 'break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'curly_brace_block' ],
     'no_short_echo_tag' => true,
+    'no_trailing_comma_in_singleline_array' => true,
     'no_unreachable_default_argument_value' => true,
     'no_unused_imports' => true,
     'no_useless_else' => true,
@@ -24,6 +27,12 @@ $fixers = [
     'short_scalar_cast' => true,
     'ternary_to_null_coalescing' => true,
     'trailing_comma_in_multiline_array' => true,
+    'binary_operator_spaces' => [
+        'align_double_arrow' => true,
+        'align_equals' => true,
+    ],
+    'pre_increment' => false,
+    'yoda_style' => false,
 
     // Docblocks & Comments
     'phpdoc_add_missing_param_annotation' => true,
@@ -40,12 +49,17 @@ $fixers = [
     'phpdoc_var_without_name' => true,
 
     'hash_to_slash_comment' => false,
+    'no_empty_comment' => false,
+    'no_empty_phpdoc' => false,
+    'no_empty_statement' => false,
 
     // Spacing and alignment
+    'method_argument_space' => true,
     'not_operator_with_successor_space' => true,
     'no_spaces_around_offset' => [
         'positions' => [ 'outside' ],
     ],
+    'trim_array_spaces' => true,
 
     // PHPUnit
     'php_unit_strict' => true,
@@ -53,16 +67,17 @@ $fixers = [
     'general_phpdoc_annotation_remove' => [ 'expectedException', 'expectedExceptionMessage', 'expectedExceptionMessageRegExp' ],
 ];
 
-// Directories that should be excluded from being scanned
+// Directories to not scan
 $excludeDirs = [];
 
-// Files that should be excluded from being scanned
+// Files to not scan
 $excludeFiles = [];
 
 // Create a new Symfony Finder instance
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude($excludeDirs)
+    ->ignoreDotFiles(true)->ignoreVCS(true)
     ->filter(function (\SplFileInfo $file) use ($excludeFiles) {
         return ! in_array($file->getRelativePathName(), $excludeFiles);
     })
