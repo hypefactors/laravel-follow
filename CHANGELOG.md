@@ -2,6 +2,6 @@
 
 All Notable changes to `Laravel Follow` will be documented in this file
 
-### v1.0.0 (TBA)
+### v1.0.0 (2017-10-26)
 
 First stable release.
