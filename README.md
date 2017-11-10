@@ -172,6 +172,26 @@ $company = Company::find(1);
 $followers = $company->followers
 ```
 
+### Get List of Followings by Entity Type
+
+Get a list of followings (entities another entity is following) and filter by an entity type
+
+```php
+$user = User::find(1);
+
+$followings = $user->followers()->whereFollowableType(Company::class)->get();
+```
+
+### Get List of Followers by Entity Type
+
+Get a list of followers (entities that are following an entity) and filter by an entity type
+
+```php
+$company = Company::find(1);
+
+$followers = $company->followers()->whereFollowerType(User::class)->get();
+```
+
 ## Change Log
 
 Please refer to the [Change Log](CHANGELOG.md) for a full history of the project.
