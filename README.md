@@ -179,7 +179,7 @@ Get a list of followings (entities another entity is following) and filter by an
 ```php
 $user = User::find(1);
 
-$followings = $user->followers()->whereFollowableType(Company::class)->get();
+$followings = $user->followings()->whereFollowableType(Company::class)->get();
 ```
 
 ### Get List of Followers by Entity Type
