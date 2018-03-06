@@ -6,6 +6,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Hypefactors\Laravel\Follow\Follower;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 
 trait CanBeFollowed
@@ -84,6 +85,22 @@ trait CanBeFollowed
     }
 
     /**
+     * Adds many entities as followers of this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function addManyFollowers(Collection $entities)
+    {
+        $entities->each(function (CanFollowContract $entity) {
+            $this->addFollower($entity);
+        });
+
+        return $this->fresh();
+    }
+
+    /**
      * Removes the given entity from being a follower of this entity.
      *
      * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
@@ -97,6 +114,22 @@ trait CanBeFollowed
         if ($followed && ! $followed->trashed()) {
             $followed->delete();
         }
+
+        return $this->fresh();
+    }
+
+    /**
+     * Removes many entities from being followers of this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function removeManyFollowers(Collection $entities)
+    {
+        $entities->each(function (CanFollowContract $entity) {
+            $this->removeFollower($entity);
+        });
 
         return $this->fresh();
     }
@@ -147,5 +180,23 @@ trait CanBeFollowed
     public function findFollower(CanFollowContract $entity)
     {
         return $this->followers()->withTrashed()->whereFollowerEntity($entity)->first();
+    }
+
+    /**
+     * Synchronize many entities that follows this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function syncManyFollowers(Collection $entities)
+    {
+        $this->followers()->delete();
+
+        $entities->each(function (CanFollowContract $entity) {
+            $this->addFollower($entity);
+        });
+
+        return $this->fresh();
     }
 }

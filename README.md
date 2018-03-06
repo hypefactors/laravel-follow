@@ -5,16 +5,16 @@
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]
 
-Laravel 5.5 Follow System for Eloquent models.
+Laravel 5.6 Follow System for Eloquent models.
 
-This package requires PHP 7.0 or higher and follows the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP.
+This package requires PHP 7.1.3+ or higher and follows the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP.
 
 ## Laravel Version Compatibility
 
-Laravel Follow                      | Laravel
------------------------------------ | ------------------------------------------
-![1.0.x][icon-laravel-follow_1_0_x] | ![Laravel 5.5][icon-laravel_5_5]
-
+Laravel Follow                  | Laravel
+------------------------------- | ------------------------------------------
+![1.x][icon-laravel-follow_1_x] | ![Laravel 5.5][icon-laravel_5_5]
+![2.x][icon-laravel-follow_2_x] | ![Laravel 5.6][icon-laravel_5_6]
 
 ## Installation
 
@@ -92,6 +92,26 @@ $company = Company::find(1);
 $company->addFollower($user);
 ```
 
+### Follow Many Entities
+
+You can follow many entities like this:
+
+```php
+$companies = Company::whereIn('id', [1, 3, 10])->get();
+
+$user = User::find(1);
+$user->followMany($companies);
+```
+
+You can also perform the same through the entity that's going to be followed:
+
+```php
+$users = User::whereIn('id', [1, 3, 10])->get();
+
+$company = Company::find(1);
+$company->addManyFollowers($users);
+```
+
 ### Unfollowing an Entity
 
 You can unfollow an entity like this:
@@ -103,13 +123,33 @@ $user = User::find(1);
 $user->unfollow($company);
 ```
 
-You can also perform the same through the entity that's going to be followed:
+You can also perform the same through the entity that's going to be unfollowed:
 
 ```php
 $user = User::find(1);
 
 $company = Company::find(1);
 $company->removeFollower($user);
+```
+
+### Unfollow Many Entities
+
+You can unfollow many entities like this:
+
+```php
+$companies = Company::whereIn('id', [1, 3, 10])->get();
+
+$user = User::find(1);
+$user->unfollowMany($companies);
+```
+
+You can also perform the same through the entity that's going to be unfollowed:
+
+```php
+$users = User::whereIn('id', [1, 3, 10])->get();
+
+$company = Company::find(1);
+$company->removeManyFollowers($users);
 ```
 
 ### Determining if an Entity is Following another Entity
@@ -226,4 +266,6 @@ If you discover any security related issues, please email support@hypefactors.co
 [icon-version]:   https://img.shields.io/packagist/v/hypefactors/laravel-follow.svg?style=flat-square&label=Version
 [icon-downloads]: https://img.shields.io/packagist/dt/hypefactors/laravel-follow.svg?style=flat-square&label=Downloads
 [icon-laravel_5_5]: https://img.shields.io/badge/5.5-supported-brightgreen.svg?style=flat-square "Laravel 5.5"
-[icon-laravel-follow_1_0_x]: https://img.shields.io/badge/version-1.0.*-blue.svg?style=flat-square&label=Version "Follow 1.0.*"
+[icon-laravel_5_6]: https://img.shields.io/badge/5.6-supported-brightgreen.svg?style=flat-square "Laravel 5.6"
+[icon-laravel-follow_1_x]: https://img.shields.io/badge/version-1.x-blue.svg?style=flat-square&label=Version "Follow 1.x"
+[icon-laravel-follow_2_x]: https://img.shields.io/badge/version-2.x-blue.svg?style=flat-square&label=Version "Follow 2.x"
