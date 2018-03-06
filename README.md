@@ -5,7 +5,7 @@
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]
 
-Laravel 5.6 Follow System for Eloquent models.
+Laravel 5.7 Follow System for Eloquent models.
 
 This package requires PHP 7.1.3+ or higher and follows the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP.
 
@@ -15,6 +15,7 @@ Laravel Follow                  | Laravel
 ------------------------------- | ------------------------------------------
 ![1.x][icon-laravel-follow_1_x] | ![Laravel 5.5][icon-laravel_5_5]
 ![2.x][icon-laravel-follow_2_x] | ![Laravel 5.6][icon-laravel_5_6]
+![3.x][icon-laravel-follow_3_x] | ![Laravel 5.7][icon-laravel_5_7]
 
 ## Installation
 
@@ -267,5 +268,7 @@ If you discover any security related issues, please email support@hypefactors.co
 [icon-downloads]: https://img.shields.io/packagist/dt/hypefactors/laravel-follow.svg?style=flat-square&label=Downloads
 [icon-laravel_5_5]: https://img.shields.io/badge/5.5-supported-brightgreen.svg?style=flat-square "Laravel 5.5"
 [icon-laravel_5_6]: https://img.shields.io/badge/5.6-supported-brightgreen.svg?style=flat-square "Laravel 5.6"
+[icon-laravel_5_7]: https://img.shields.io/badge/5.7-supported-brightgreen.svg?style=flat-square "Laravel 5.7"
 [icon-laravel-follow_1_x]: https://img.shields.io/badge/version-1.x-blue.svg?style=flat-square&label=Version "Follow 1.x"
 [icon-laravel-follow_2_x]: https://img.shields.io/badge/version-2.x-blue.svg?style=flat-square&label=Version "Follow 2.x"
+[icon-laravel-follow_3_x]: https://img.shields.io/badge/version-3.x-blue.svg?style=flat-square&label=Version "Follow 3.x"

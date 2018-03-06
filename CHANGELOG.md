@@ -2,6 +2,12 @@
 
 All Notable changes to `Laravel Follow` will be documented in this file
 
+### v3.0.0 (TBA)
+
+`ADDED`
+
+- Support for Laravel 5.7
+
 ### v2.0.0 (2018-03-06)
 
 `ADDED`
