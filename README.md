@@ -103,6 +103,15 @@ $user = User::find(1);
 $user->followMany($companies);
 ```
 
+You can also perform the same through the entity that's going to be followed:
+
+```php
+$users = User::whereIn('id', [1, 3, 10])->get();
+
+$company = Company::find(1);
+$company->addManyFollowers($users);
+```
+
 ### Unfollowing an Entity
 
 You can unfollow an entity like this:
@@ -114,7 +123,7 @@ $user = User::find(1);
 $user->unfollow($company);
 ```
 
-You can also perform the same through the entity that's going to be followed:
+You can also perform the same through the entity that's going to be unfollowed:
 
 ```php
 $user = User::find(1);
@@ -132,6 +141,15 @@ $companies = Company::whereIn('id', [1, 3, 10])->get();
 
 $user = User::find(1);
 $user->unfollowMany($companies);
+```
+
+You can also perform the same through the entity that's going to be unfollowed:
+
+```php
+$users = User::whereIn('id', [1, 3, 10])->get();
+
+$company = Company::find(1);
+$company->removeManyFollowers($users);
 ```
 
 ### Determining if an Entity is Following another Entity
