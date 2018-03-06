@@ -17,7 +17,21 @@ class CanBeFollowedTest extends FunctionalTestCase
 
         $company->addFollower($user);
 
+        $this->assertCount(1, $company->followers);
+        $this->assertTrue($company->hasFollowers());
         $this->assertTrue($company->hasFollower($user));
+    }
+
+    /** @test */
+    public function an_entity_can_add_many_followers_directly()
+    {
+        $company = factory(CompanyStub::class)->create();
+
+        $users = factory(UserStub::class, 3)->create();
+
+        $company->addManyFollowers($users);
+
+        $this->assertCount(3, $company->followers);
         $this->assertTrue($company->hasFollowers());
     }
 
@@ -29,13 +43,31 @@ class CanBeFollowedTest extends FunctionalTestCase
 
         $company->addFollower($user);
 
-        $this->assertTrue($company->hasFollower($user));
         $this->assertTrue($company->hasFollowers());
+        $this->assertTrue($company->hasFollower($user));
 
         $company->removeFollower($user);
 
+        $this->assertFalse($company->hasFollowers());
         $this->assertFalse($company->hasFollower($user));
-        #$this->assertFalse($company->hasFollowers());
+    }
+
+    /** @test */
+    public function an_entity_can_remove_many_followers_directly()
+    {
+        $company = factory(CompanyStub::class)->create();
+
+        $users = factory(UserStub::class, 3)->create();
+
+        $company->addManyFollowers($users);
+
+        $this->assertCount(3, $company->followers);
+        $this->assertTrue($company->hasFollowers());
+
+        $company->removeManyFollowers($users);
+
+        $this->assertCount(0, $company->fresh()->followers);
+        $this->assertFalse($company->hasFollowers());
     }
 
     /** @test */
@@ -46,8 +78,8 @@ class CanBeFollowedTest extends FunctionalTestCase
 
         $company->addFollower($user);
 
-        $this->assertTrue($company->hasFollower($user));
         $this->assertTrue($company->hasFollowers());
+        $this->assertTrue($company->hasFollower($user));
 
         $company->removeFollower($user);
 
@@ -56,8 +88,8 @@ class CanBeFollowedTest extends FunctionalTestCase
 
         $company->addFollower($user);
 
-        $this->assertTrue($company->hasFollower($user));
         $this->assertTrue($company->hasFollowers());
+        $this->assertTrue($company->hasFollower($user));
     }
 
     /** @test */
@@ -111,5 +143,29 @@ class CanBeFollowedTest extends FunctionalTestCase
         $company->delete();
 
         $this->assertFalse($user->hasFollowings());
+    }
+
+    /** @test */
+    public function an_entity_can_have_many_entities_synchronized_as_followers()
+    {
+        $company = factory(CompanyStub::class)->create();
+
+        $users = factory(UserStub::class, 3)->create();
+
+        $company->addManyFollowers($users);
+
+        $this->assertCount(3, $company->followers);
+        $this->assertTrue($company->hasFollowers());
+
+        $users = factory(UserStub::class, 4)->create();
+
+        $company = $company->syncManyFollowers($users);
+
+        $this->assertCount(4, $company->followers);
+        $this->assertTrue($company->hasFollowers());
+        $this->assertEquals(
+            $users->pluck('id')->toArray(),
+            $company->followers->pluck('id')->toArray()
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace Hypefactors\Laravel\Follow\Contracts;
 
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 interface CanBeFollowedContract
 {
@@ -40,6 +41,15 @@ interface CanBeFollowedContract
     public function addFollower(CanFollowContract $entity);
 
     /**
+     * Adds many entities as followers of this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function addManyFollowers(Collection $entities);
+
+    /**
      * Removes the given entity from being a follower of this entity.
      *
      * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
@@ -47,6 +57,15 @@ interface CanBeFollowedContract
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function removeFollower(CanFollowContract $entity);
+
+    /**
+     * Removes many entities from being followers of this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function removeManyFollowers(Collection $entities);
 
     /**
      * Finds the gained followers (created) over the given time period.
@@ -78,4 +97,13 @@ interface CanBeFollowedContract
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function findFollower(CanFollowContract $entity);
+
+    /**
+     * Synchronize many entities that follows this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function syncManyFollowers(Collection $entities);
 }

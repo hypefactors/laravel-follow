@@ -92,6 +92,17 @@ $company = Company::find(1);
 $company->addFollower($user);
 ```
 
+### Follow Many Entities
+
+You can follow many entities like this:
+
+```php
+$companies = Company::whereIn('id', [1, 3, 10])->get();
+
+$user = User::find(1);
+$user->followMany($companies);
+```
+
 ### Unfollowing an Entity
 
 You can unfollow an entity like this:
@@ -110,6 +121,17 @@ $user = User::find(1);
 
 $company = Company::find(1);
 $company->removeFollower($user);
+```
+
+### Unfollow Many Entities
+
+You can unfollow many entities like this:
+
+```php
+$companies = Company::whereIn('id', [1, 3, 10])->get();
+
+$user = User::find(1);
+$user->unfollowMany($companies);
 ```
 
 ### Determining if an Entity is Following another Entity

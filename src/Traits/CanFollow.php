@@ -4,6 +4,7 @@ namespace Hypefactors\Laravel\Follow\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Hypefactors\Laravel\Follow\Follower;
+use Illuminate\Database\Eloquent\Collection;
 use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
 
 trait CanFollow
@@ -81,6 +82,22 @@ trait CanFollow
     }
 
     /**
+     * Follows many entities.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function followMany(Collection $entities)
+    {
+        $entities->each(function (CanBeFollowedContract $entity) {
+            $this->follow($entity);
+        });
+
+        return $this->fresh();
+    }
+
+    /**
      * Unfollows the given entity.
      *
      * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
@@ -99,6 +116,22 @@ trait CanFollow
     }
 
     /**
+     * Unfollows many entities.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function unfollowMany(Collection $entities)
+    {
+        $entities->each(function (CanBeFollowedContract $entity) {
+            $this->unfollow($entity);
+        });
+
+        return $this->fresh();
+    }
+
+    /**
      * Returns the given following entity record if this entity is following it.
      *
      * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
@@ -108,5 +141,23 @@ trait CanFollow
     public function findFollowing(CanBeFollowedContract $entity)
     {
         return $this->followings()->withTrashed()->whereFollowableEntity($entity)->first();
+    }
+
+    /**
+     * Synchronize many entities to be followed by this entity.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $entities
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function syncManyFollowings(Collection $entities)
+    {
+        $this->followings()->delete();
+
+        $entities->each(function (CanBeFollowedContract $entity) {
+            $this->follow($entity);
+        });
+
+        return $this->fresh();
     }
 }
