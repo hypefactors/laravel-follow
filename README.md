@@ -11,10 +11,9 @@ This package requires PHP 7.0 or higher and follows the FIG standards [PSR-1][li
 
 ## Laravel Version Compatibility
 
-Laravel Follow                      | Laravel
------------------------------------ | ------------------------------------------
-![1.0.x][icon-laravel-follow_1_0_x] | ![Laravel 5.5][icon-laravel_5_5]
-
+Laravel Follow                  | Laravel
+------------------------------- | ------------------------------------------
+![1.x][icon-laravel-follow_1_x] | ![Laravel 5.5][icon-laravel_5_5]
 
 ## Installation
 
@@ -266,4 +265,4 @@ If you discover any security related issues, please email support@hypefactors.co
 [icon-version]:   https://img.shields.io/packagist/v/hypefactors/laravel-follow.svg?style=flat-square&label=Version
 [icon-downloads]: https://img.shields.io/packagist/dt/hypefactors/laravel-follow.svg?style=flat-square&label=Downloads
 [icon-laravel_5_5]: https://img.shields.io/badge/5.5-supported-brightgreen.svg?style=flat-square "Laravel 5.5"
-[icon-laravel-follow_1_0_x]: https://img.shields.io/badge/version-1.0.*-blue.svg?style=flat-square&label=Version "Follow 1.0.*"
+[icon-laravel-follow_1_x]: https://img.shields.io/badge/version-1.x-blue.svg?style=flat-square&label=Version "Follow 1.x"
