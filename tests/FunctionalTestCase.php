@@ -9,7 +9,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
