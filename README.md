@@ -49,7 +49,7 @@ Here's how we do it for a `User` and `Company` entity, where a user will be able
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Hypefactors\Laravel\Follow\CanFollow;
+use Hypefactors\Laravel\Follow\Traits\CanFollow;
 use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 
 class User extends Model implements CanFollowContract
@@ -64,7 +64,7 @@ class User extends Model implements CanFollowContract
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Hypefactors\Laravel\Follow\CanBeFollowed;
+use Hypefactors\Laravel\Follow\Traits\CanBeFollowed;
 use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
 
 class Company extends Model implements CanBeFollowedContract
