@@ -7,17 +7,17 @@
 
 Laravel 5.9 Follow System for Eloquent models.
 
-This package requires PHP 7.2 or higher and follows the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP.
+This package is compliant with the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP. If you notice any compliance oversights, please send a patch via pull request.
 
-## Laravel Version Compatibility
+## Version Matrix
 
-Laravel Follow                  | Laravel
-------------------------------- | ------------------------------------------
-![1.x][icon-laravel-follow_1_x] | ![Laravel 5.5][icon-laravel_5_5]
-![2.x][icon-laravel-follow_2_x] | ![Laravel 5.6][icon-laravel_5_6]
-![3.x][icon-laravel-follow_3_x] | ![Laravel 5.7][icon-laravel_5_7]
-![4.x][icon-laravel-follow_4_x] | ![Laravel 5.8][icon-laravel_5_8]
-![5.x][icon-laravel-follow_5_x] | ![Laravel 5.9][icon-laravel_5_9]
+Version | Laravel | PHP Version
+------- | ------- | ------------
+5.x     | 5.9.x   | >= 7.1
+4.x     | 5.8.x   | >= 7.1
+3.x     | 5.7.x   | >= 7.1
+2.x     | 5.6.x   | >= 7.1
+1.x     | 5.5.x   | >= 7.0
 
 ## Installation
 
@@ -235,19 +235,12 @@ $company = Company::find(1);
 $followers = $company->followers()->whereFollowerType(User::class)->get();
 ```
 
-## Change Log
+## Contributing
 
-Please refer to the [Change Log](CHANGELOG.md) for a full history of the project.
+Thank you for your interest in Laravel Follow. Here are some of the many ways to contribute.
 
-## Contributing & Protocols
-
-- [Etiquette](CONTRIBUTING.md#etiquette)
-- [Versioning](CONTRIBUTING.md#versioning)
-- [Coding Standards](CONTRIBUTING.md#coding-standards)
-- [Issues \ Bugs](CONTRIBUTING.md#issues--bugs)
-- [Pull Requests](CONTRIBUTING.md#pull-requests)
-- [Proposals](CONTRIBUTING.md#proposals)
-- [Testing](CONTRIBUTING.md#running-tests)
+- Check out our [contributing guide](/.github/CONTRIBUTING.md)
+- Look at our [code of conduct](/.github/CODE_OF_CONDUCT.md)
 
 ## Security
 
@@ -255,7 +248,7 @@ If you discover any security related issues, please email support@hypefactors.co
 
 ## License
 
-`hypefactors/laravel-follow` is licenced under the BSD 3-Clause License. Please see the [license file](LICENSE) for more information.
+Laravel Follow is licenced under the BSD 3-Clause License. Please see the [license file](LICENSE) for more information.
 
 [link-psr-1]:     http://www.php-fig.org/psr/psr-1/
 [link-psr-2]:     http://www.php-fig.org/psr/psr-2/
@@ -264,17 +257,7 @@ If you discover any security related issues, please email support@hypefactors.co
 [link-license]:   https://opensource.org/licenses/BSD-3-Clause
 [link-packagist]: https://packagist.org/packages/hypefactors/laravel-follow
 
-[icon-travis]:    https://img.shields.io/travis/hypefactors/laravel-follow.svg?style=flat-square&label=Travis%20CI
-[icon-license]:   https://img.shields.io/packagist/l/hypefactors/laravel-follow.svg?style=flat-square&label=License
-[icon-version]:   https://img.shields.io/packagist/v/hypefactors/laravel-follow.svg?style=flat-square&label=Version
-[icon-downloads]: https://img.shields.io/packagist/dt/hypefactors/laravel-follow.svg?style=flat-square&label=Downloads
-[icon-laravel_5_5]: https://img.shields.io/badge/5.5-supported-brightgreen.svg?style=flat-square "Laravel 5.5"
-[icon-laravel_5_6]: https://img.shields.io/badge/5.6-supported-brightgreen.svg?style=flat-square "Laravel 5.6"
-[icon-laravel_5_7]: https://img.shields.io/badge/5.7-supported-brightgreen.svg?style=flat-square "Laravel 5.7"
-[icon-laravel_5_8]: https://img.shields.io/badge/5.8-supported-brightgreen.svg?style=flat-square "Laravel 5.8"
-[icon-laravel_5_9]: https://img.shields.io/badge/5.9-supported-brightgreen.svg?style=flat-square "Laravel 5.9"
-[icon-laravel-follow_1_x]: https://img.shields.io/badge/version-1.x-blue.svg?style=flat-square&label=Version "Follow 1.x"
-[icon-laravel-follow_2_x]: https://img.shields.io/badge/version-2.x-blue.svg?style=flat-square&label=Version "Follow 2.x"
-[icon-laravel-follow_3_x]: https://img.shields.io/badge/version-3.x-blue.svg?style=flat-square&label=Version "Follow 3.x"
-[icon-laravel-follow_4_x]: https://img.shields.io/badge/version-4.x-blue.svg?style=flat-square&label=Version "Follow 4.x"
-[icon-laravel-follow_5_x]: https://img.shields.io/badge/version-5.x-blue.svg?style=flat-square&label=Version "Follow 5.x"
+[icon-travis]:    https://travis-ci.org/hypefactors/laravel-follow.svg?branch=5.0
+[icon-license]:   https://poser.pugx.org/hypefactors/laravel-follow/license
+[icon-version]:   https://poser.pugx.org/hypefactors/laravel-follow/version
+[icon-downloads]: https://poser.pugx.org/hypefactors/laravel-follow/downloads
