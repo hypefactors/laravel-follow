@@ -119,7 +119,7 @@ class CanFollowTest extends FunctionalTestCase
 
         $this->assertCount(4, $user->followings);
         $this->assertTrue($user->hasFollowings());
-        $this->assertEquals(
+        $this->assertSame(
             $companies->pluck('id')->toArray(),
             $user->followings->pluck('id')->toArray()
         );
