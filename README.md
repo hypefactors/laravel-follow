@@ -13,7 +13,7 @@ This package is compliant with the FIG standards [PSR-1][link-psr-1], [PSR-2][li
 
 Version | Laravel | PHP Version
 ------- | ------- | ------------
-5.x     | 5.9.x   | >= 7.1
+5.x     | 5.9.x   | >= 7.2
 4.x     | 5.8.x   | >= 7.1
 3.x     | 5.7.x   | >= 7.1
 2.x     | 5.6.x   | >= 7.1
