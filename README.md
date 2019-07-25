@@ -5,7 +5,7 @@
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]
 
-Laravel 5.9 Follow System for Eloquent models.
+Laravel 6 Follow System for Eloquent models.
 
 This package is compliant with the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP. If you notice any compliance oversights, please send a patch via pull request.
 
@@ -13,7 +13,7 @@ This package is compliant with the FIG standards [PSR-1][link-psr-1], [PSR-2][li
 
 Version | Laravel | PHP Version
 ------- | ------- | ------------
-5.x     | 5.9.x   | >= 7.2
+5.x     | 6.0+    | >= 7.2
 4.x     | 5.8.x   | >= 7.1
 3.x     | 5.7.x   | >= 7.1
 2.x     | 5.6.x   | >= 7.1

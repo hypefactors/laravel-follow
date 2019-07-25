@@ -6,7 +6,7 @@ All Notable changes to `Laravel Follow` will be documented in this file
 
 `ADDED`
 
-- Support for Laravel 5.9
+- Support for Laravel 6
 
 ### v4.0.0 (2019-03-02)
 
