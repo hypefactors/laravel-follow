@@ -1,6 +1,6 @@
 {
     "name": "hypefactors/laravel-follow",
-    "description": "Laravel 6 Follow System for Eloquent models.",
+    "description": "Laravel 7 Follow System for Eloquent models.",
     "keywords": [
         "php",
         "hypefactors",
@@ -17,13 +17,13 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "illuminate/support": "^6.0"
+        "php": ">=7.2.5",
+        "illuminate/support": "^7.0"
     },
     "require-dev": {
         "hypefactors/php-code-standards": "^1.0",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "^4.0",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^8.0"
     },
     "autoload": {
@@ -44,7 +44,7 @@
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "5.0.x-dev"
+            "dev-master": "6.0.x-dev"
         },
         "laravel": {
             "providers": [
@@ -55,7 +55,5 @@
     "scripts": {
         "cs": "vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating",
         "test": "vendor/bin/phpunit --verbose --colors=always"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
