@@ -17,8 +17,6 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
             '--database' => 'testbench',
         ]);
 
-        $this->withFactories(__DIR__.'/Factories');
-
         Schema::create('companies', function ($table) {
             $table->increments('id');
             $table->string('name');

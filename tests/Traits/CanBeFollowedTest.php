@@ -12,8 +12,8 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function an_entity_can_add_a_follower_directly()
     {
-        $user    = factory(UserStub::class)->create();
-        $company = factory(CompanyStub::class)->create();
+        $user    = UserStub::factory()->create();
+        $company = CompanyStub::factory()->create();
 
         $company->addFollower($user);
 
@@ -25,9 +25,9 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function an_entity_can_add_many_followers_directly()
     {
-        $company = factory(CompanyStub::class)->create();
+        $company = CompanyStub::factory()->create();
 
-        $users = factory(UserStub::class, 3)->create();
+        $users = UserStub::factory()->count(3)->create();
 
         $company->addManyFollowers($users);
 
@@ -38,8 +38,8 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function an_entity_can_remove_a_follower_directly()
     {
-        $user    = factory(UserStub::class)->create();
-        $company = factory(CompanyStub::class)->create();
+        $user    = UserStub::factory()->create();
+        $company = CompanyStub::factory()->create();
 
         $company->addFollower($user);
 
@@ -55,9 +55,9 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function an_entity_can_remove_many_followers_directly()
     {
-        $company = factory(CompanyStub::class)->create();
+        $company = CompanyStub::factory()->create();
 
-        $users = factory(UserStub::class, 3)->create();
+        $users = UserStub::factory()->count(3)->create();
 
         $company->addManyFollowers($users);
 
@@ -73,8 +73,8 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function an_entity_can_readd_a_follower_directly()
     {
-        $user    = factory(UserStub::class)->create();
-        $company = factory(CompanyStub::class)->create();
+        $user    = UserStub::factory()->create();
+        $company = CompanyStub::factory()->create();
 
         $company->addFollower($user);
 
@@ -95,8 +95,8 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function it_can_determine_the_amount_of_gained_followers_for_a_given_date_range()
     {
-        $user    = factory(UserStub::class)->create();
-        $company = factory(CompanyStub::class)->create();
+        $user    = UserStub::factory()->create();
+        $company = CompanyStub::factory()->create();
 
         $startDate = Carbon::now()->subDays(3);
         $endDate   = Carbon::now();
@@ -118,8 +118,8 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function it_can_determine_the_amount_of_lost_followers_for_a_given_date_range()
     {
-        $user    = factory(UserStub::class)->create();
-        $company = factory(CompanyStub::class)->create();
+        $user    = UserStub::factory()->create();
+        $company = CompanyStub::factory()->create();
 
         $user->follow($company);
         $user->unfollow($company);
@@ -135,8 +135,8 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function deleting_a_following_entity_deletes_the_following_records()
     {
-        $user    = factory(UserStub::class)->create();
-        $company = factory(CompanyStub::class)->create();
+        $user    = UserStub::factory()->create();
+        $company = CompanyStub::factory()->create();
 
         $user->follow($company);
 
@@ -148,16 +148,16 @@ class CanBeFollowedTest extends FunctionalTestCase
     /** @test */
     public function an_entity_can_have_many_entities_synchronized_as_followers()
     {
-        $company = factory(CompanyStub::class)->create();
+        $company = CompanyStub::factory()->create();
 
-        $users = factory(UserStub::class, 3)->create();
+        $users = UserStub::factory()->count(3)->create();
 
         $company->addManyFollowers($users);
 
         $this->assertCount(3, $company->followers);
         $this->assertTrue($company->hasFollowers());
 
-        $users = factory(UserStub::class, 4)->create();
+        $users = UserStub::factory()->count(4)->create();
 
         $company = $company->syncManyFollowers($users);
 

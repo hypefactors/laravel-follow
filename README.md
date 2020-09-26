@@ -5,7 +5,7 @@
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]
 
-Laravel 7 Follow System for Eloquent models.
+Laravel 8 Follow System for Eloquent models.
 
 This package is compliant with the FIG standards [PSR-1][link-psr-1], [PSR-2][link-psr-2] and [PSR-4][link-psr-4] to ensure a high level of interoperability between shared PHP. If you notice any compliance oversights, please send a patch via pull request.
 
@@ -13,8 +13,9 @@ This package is compliant with the FIG standards [PSR-1][link-psr-1], [PSR-2][li
 
 Version | Laravel | PHP Version
 ------- | ------- | ------------
-6.x     | 7.0+    | >= 7.2.5
-5.x     | 6.0+    | >= 7.2
+7.x     | 8.x     | >= 7.3
+6.x     | 7.x     | >= 7.2.5
+5.x     | 6.x     | >= 7.2
 4.x     | 5.8.x   | >= 7.1
 3.x     | 5.7.x   | >= 7.1
 2.x     | 5.6.x   | >= 7.1
@@ -258,7 +259,7 @@ Laravel Follow is licenced under the BSD 3-Clause License. Please see the [licen
 [link-license]:         https://opensource.org/licenses/BSD-3-Clause
 [link-packagist]:       https://packagist.org/packages/hypefactors/laravel-follow
 
-[icon-github-workflow]: https://github.com/hypefactors/laravel-follow/workflows/Tests/badge.svg?branch=6.x
+[icon-github-workflow]: https://github.com/hypefactors/laravel-follow/workflows/Tests/badge.svg?branch=7.x
 [icon-license]:         https://poser.pugx.org/hypefactors/laravel-follow/license
 [icon-version]:         https://poser.pugx.org/hypefactors/laravel-follow/version
 [icon-downloads]:       https://poser.pugx.org/hypefactors/laravel-follow/downloads
