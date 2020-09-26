@@ -1,6 +1,6 @@
 ## Laravel Follow
 
-[![Build Status][icon-travis]][link-travis]
+[![Build Status][icon-github-workflow]][link-github-workflow]
 [![Software License][icon-license]][link-license]
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]
@@ -251,14 +251,14 @@ If you discover any security related issues, please email support@hypefactors.co
 
 Laravel Follow is licenced under the BSD 3-Clause License. Please see the [license file](LICENSE) for more information.
 
-[link-psr-1]:     http://www.php-fig.org/psr/psr-1/
-[link-psr-2]:     http://www.php-fig.org/psr/psr-2/
-[link-psr-4]:     http://www.php-fig.org/psr/psr-4/
-[link-travis]:    https://travis-ci.org/hypefactors/laravel-follow
-[link-license]:   https://opensource.org/licenses/BSD-3-Clause
-[link-packagist]: https://packagist.org/packages/hypefactors/laravel-follow
+[link-psr-1]:           http://www.php-fig.org/psr/psr-1/
+[link-psr-2]:           http://www.php-fig.org/psr/psr-2/
+[link-psr-4]:           http://www.php-fig.org/psr/psr-4/
+[link-github-workflow]: https://github.com/hypefactors/laravel-follow/actions?query=workflow%3ATests
+[link-license]:         https://opensource.org/licenses/BSD-3-Clause
+[link-packagist]:       https://packagist.org/packages/hypefactors/laravel-follow
 
-[icon-travis]:    https://travis-ci.org/hypefactors/laravel-follow.svg?branch=6.x
-[icon-license]:   https://poser.pugx.org/hypefactors/laravel-follow/license
-[icon-version]:   https://poser.pugx.org/hypefactors/laravel-follow/version
-[icon-downloads]: https://poser.pugx.org/hypefactors/laravel-follow/downloads
+[icon-github-workflow]: https://github.com/hypefactors/laravel-follow/workflows/Tests/badge.svg?branch=6.x
+[icon-license]:         https://poser.pugx.org/hypefactors/laravel-follow/license
+[icon-version]:         https://poser.pugx.org/hypefactors/laravel-follow/version
+[icon-downloads]:       https://poser.pugx.org/hypefactors/laravel-follow/downloads
