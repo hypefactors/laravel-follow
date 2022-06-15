@@ -2,7 +2,7 @@
 
 All Notable changes to `Laravel Follow` will be documented in this file
 
-### v8.0.0 (TBA)
+### v8.0.0 (2022-06-15)
 
 `ADDED`
 
