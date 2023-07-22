@@ -17,14 +17,14 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/support": "^9.0"
+        "php": "^8.1",
+        "illuminate/support": "^10.0"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
-        "hypefactors/php-code-standards": "^2.0",
+        "hypefactors/php-code-standards": "^3.0",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^8.0",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
@@ -42,13 +42,14 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
+            "bamarni/composer-bin-plugin": true,
+            "hypefactors/php-code-standards": true
         }
     },
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "8.0.x-dev"
+            "dev-master": "9.0.x-dev"
         },
         "laravel": {
             "providers": [
@@ -57,7 +58,11 @@
         }
     },
     "scripts": {
-        "cs": "vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating",
+        "ecs:fix": "./vendor/bin/ecs --fix",
+        "ecs:check": "./vendor/bin/ecs",
+        "phpstan": "./vendor/bin/phpstan analyse --ansi",
+        "rector:fix": "./vendor/bin/rector process --ansi",
+        "rector:check": "./vendor/bin/rector process --ansi --dry-run",
         "test": "vendor/bin/phpunit --verbose --colors=always"
     }
 }
