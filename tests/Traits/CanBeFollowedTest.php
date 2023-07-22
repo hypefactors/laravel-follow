@@ -3,16 +3,18 @@
 namespace Hypefactors\Laravel\Follow\Tests\Traits;
 
 use Carbon\Carbon;
-use Hypefactors\Laravel\Follow\Tests\Stubs\UserStub;
-use Hypefactors\Laravel\Follow\Tests\Stubs\CompanyStub;
 use Hypefactors\Laravel\Follow\Tests\FunctionalTestCase;
+use Hypefactors\Laravel\Follow\Tests\Stubs\CompanyStub;
+use Hypefactors\Laravel\Follow\Tests\Stubs\UserStub;
 
 class CanBeFollowedTest extends FunctionalTestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function an_entity_can_add_a_follower_directly()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $company->addFollower($user);
@@ -22,7 +24,9 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertTrue($company->hasFollower($user));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function an_entity_can_add_many_followers_directly()
     {
         $company = CompanyStub::factory()->create();
@@ -35,10 +39,12 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertTrue($company->hasFollowers());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function an_entity_can_remove_a_follower_directly()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $company->addFollower($user);
@@ -52,7 +58,9 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertFalse($company->hasFollower($user));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function an_entity_can_remove_many_followers_directly()
     {
         $company = CompanyStub::factory()->create();
@@ -70,10 +78,12 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertFalse($company->hasFollowers());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function an_entity_can_readd_a_follower_directly()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $company->addFollower($user);
@@ -92,21 +102,23 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertTrue($company->hasFollower($user));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_determine_the_amount_of_gained_followers_for_a_given_date_range()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $startDate = Carbon::now()->subDays(3);
-        $endDate   = Carbon::now();
+        $endDate = Carbon::now();
 
         $followersCount = $company->gainedFollowers($startDate, $endDate)->count();
 
         $this->assertSame(0, $followersCount);
 
         $startDate = Carbon::now()->subDays(3);
-        $endDate   = Carbon::now();
+        $endDate = Carbon::now();
 
         $user->follow($company);
 
@@ -115,27 +127,31 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertSame(1, $gainedFollowersCount);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_determine_the_amount_of_lost_followers_for_a_given_date_range()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $user->follow($company);
         $user->unfollow($company);
 
         $startDate = Carbon::now()->subDays(3);
-        $endDate   = Carbon::now();
+        $endDate = Carbon::now();
 
         $lostFollowersCount = $company->lostFollowers($startDate, $endDate)->count();
 
         $this->assertSame(1, $lostFollowersCount);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function deleting_a_following_entity_deletes_the_following_records()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $user->follow($company);
@@ -145,7 +161,9 @@ class CanBeFollowedTest extends FunctionalTestCase
         $this->assertFalse($user->hasFollowings());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function an_entity_can_have_many_entities_synchronized_as_followers()
     {
         $company = CompanyStub::factory()->create();

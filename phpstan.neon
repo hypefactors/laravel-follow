@@ -1,0 +1,12 @@
+includes:
+    - ./vendor/hypefactors/php-code-standards/larastan.neon
+
+parameters:
+    paths:
+        - src/
+
+    # The level 8 is the highest level
+    level: 0
+
+    parallel:
+        processTimeout: 300.0

@@ -25,16 +25,12 @@ interface CanBeFollowedContract
     /**
      * Determines if the given entity is a follower of this entity.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
-     *
      * @return bool
      */
     public function hasFollower(CanFollowContract $entity);
 
     /**
      * Adds the given entity as a follower of this entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -43,16 +39,12 @@ interface CanBeFollowedContract
     /**
      * Adds many entities as followers of this entity.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function addManyFollowers(Collection $entities);
 
     /**
      * Removes the given entity from being a follower of this entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -61,18 +53,12 @@ interface CanBeFollowedContract
     /**
      * Removes many entities from being followers of this entity.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function removeManyFollowers(Collection $entities);
 
     /**
      * Finds the gained followers (created) over the given time period.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \DateTime                             $startDate
-     * @param \DateTime                             $endDate
      *
      * @return int
      */
@@ -81,10 +67,6 @@ interface CanBeFollowedContract
     /**
      * Finds the lost followers (deleted) over the given time period.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \DateTime                             $startDate
-     * @param \DateTime                             $endDate
-     *
      * @return int
      */
     public function scopeLostFollowers(Builder $query, DateTime $startDate, DateTime $endDate);
@@ -92,16 +74,12 @@ interface CanBeFollowedContract
     /**
      * Returns the given entity record if this entity is being followed by it.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
-     *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function findFollower(CanFollowContract $entity);
 
     /**
      * Synchronize many entities that follows this entity.
-     *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
      *
      * @return \Illuminate\Database\Eloquent\Model
      */

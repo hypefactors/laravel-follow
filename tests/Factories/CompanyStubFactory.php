@@ -2,8 +2,8 @@
 
 namespace Hypefactors\Laravel\Follow\Tests\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Hypefactors\Laravel\Follow\Tests\Stubs\CompanyStub;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyStubFactory extends Factory
 {

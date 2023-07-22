@@ -2,10 +2,10 @@
 
 namespace Hypefactors\Laravel\Follow\Traits;
 
-use Illuminate\Database\Eloquent\Model;
+use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
 use Hypefactors\Laravel\Follow\Follower;
 use Illuminate\Database\Eloquent\Collection;
-use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
+use Illuminate\Database\Eloquent\Model;
 
 trait CanFollow
 {
@@ -44,8 +44,6 @@ trait CanFollow
     /**
      * Determines if the entity is following the given entity.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
-     *
      * @return bool
      */
     public function isFollowing(CanBeFollowedContract $entity)
@@ -58,8 +56,6 @@ trait CanFollow
     /**
      * Follows the given entity.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function follow(CanBeFollowedContract $entity)
@@ -71,8 +67,8 @@ trait CanFollow
         if ($following && $following->trashed()) {
             $following->restore();
         } elseif (! $following) {
-            $follower                  = new Follower();
-            $follower->followable_id   = $entity->getKey();
+            $follower = new Follower();
+            $follower->followable_id = $entity->getKey();
             $follower->followable_type = $entity->getMorphClass();
 
             $this->followings()->save($follower);
@@ -83,8 +79,6 @@ trait CanFollow
 
     /**
      * Follows many entities.
-     *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -99,8 +93,6 @@ trait CanFollow
 
     /**
      * Unfollows the given entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -118,8 +110,6 @@ trait CanFollow
     /**
      * Unfollows many entities.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function unfollowMany(Collection $entities)
@@ -134,8 +124,6 @@ trait CanFollow
     /**
      * Returns the given following entity record if this entity is following it.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
-     *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function findFollowing(CanBeFollowedContract $entity)
@@ -145,8 +133,6 @@ trait CanFollow
 
     /**
      * Synchronize many entities to be followed by this entity.
-     *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
      *
      * @return \Illuminate\Database\Eloquent\Model
      */

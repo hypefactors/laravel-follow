@@ -23,16 +23,12 @@ interface CanFollowContract
     /**
      * Determines if the entity is following the given entity.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
-     *
      * @return bool
      */
     public function isFollowing(CanBeFollowedContract $entity);
 
     /**
      * Follows the given entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -41,16 +37,12 @@ interface CanFollowContract
     /**
      * Follows many entities.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function followMany(Collection $entities);
 
     /**
      * Unfollows the given entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -59,8 +51,6 @@ interface CanFollowContract
     /**
      * Unfollows many entities.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function unfollowMany(Collection $entities);
@@ -68,16 +58,12 @@ interface CanFollowContract
     /**
      * Returns the given following entity record if this entity is following it.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
-     *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function findFollowing(CanBeFollowedContract $entity);
 
     /**
      * Synchronize many entities to be followed by this entity.
-     *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
      *
      * @return \Illuminate\Database\Eloquent\Model
      */

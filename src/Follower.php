@@ -2,11 +2,11 @@
 
 namespace Hypefactors\Laravel\Follow;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
+use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Follower extends Model
 {
@@ -35,7 +35,6 @@ class Follower extends Model
     /**
      * Finds the entities that are followers for the given type.
      *
-     * @param \Illuminate\Database\Eloquent\Builder      $query
      * @param \Illuminate\Database\Eloquent\Model|string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -60,7 +59,6 @@ class Follower extends Model
     /**
      * Finds the entities that are being followed for the given type.
      *
-     * @param \Illuminate\Database\Eloquent\Builder      $query
      * @param \Illuminate\Database\Eloquent\Model|string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -85,9 +83,6 @@ class Follower extends Model
     /**
      * Finds the given entity that's following other entities.
      *
-     * @param \Illuminate\Database\Eloquent\Builder                   $query
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
-     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWhereFollowerEntity(Builder $query, CanFollowContract $entity)
@@ -100,9 +95,6 @@ class Follower extends Model
 
     /**
      * Finds the given entity that's being followed by other entities.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder                       $query
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

@@ -3,15 +3,17 @@
 namespace Hypefactors\Laravel\Follow\Tests;
 
 use Hypefactors\Laravel\Follow\Follower;
-use Hypefactors\Laravel\Follow\Tests\Stubs\UserStub;
 use Hypefactors\Laravel\Follow\Tests\Stubs\CompanyStub;
+use Hypefactors\Laravel\Follow\Tests\Stubs\UserStub;
 
 class FollowerTest extends FunctionalTestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function the_following_entity_can_be_retrieved()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $user->follow($company);
@@ -21,10 +23,12 @@ class FollowerTest extends FunctionalTestCase
         $this->assertInstanceOf(CompanyStub::class, $following->followable);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function the_follower_entity_can_be_retrieved()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $user->follow($company);
@@ -34,10 +38,12 @@ class FollowerTest extends FunctionalTestCase
         $this->assertInstanceOf(UserStub::class, $following->follower);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function all_followers_can_be_retrieved_by_a_given_type()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $user->follow($company);
@@ -47,10 +53,12 @@ class FollowerTest extends FunctionalTestCase
         $this->assertCount(1, $followers);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function all_followables_can_be_retrieved_by_a_given_type()
     {
-        $user    = UserStub::factory()->create();
+        $user = UserStub::factory()->create();
         $company = CompanyStub::factory()->create();
 
         $user->follow($company);

@@ -3,11 +3,11 @@
 namespace Hypefactors\Laravel\Follow\Traits;
 
 use DateTime;
-use Illuminate\Database\Eloquent\Model;
+use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 use Hypefactors\Laravel\Follow\Follower;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
+use Illuminate\Database\Eloquent\Model;
 
 trait CanBeFollowed
 {
@@ -46,8 +46,6 @@ trait CanBeFollowed
     /**
      * Determines if the given entity is a follower of this entity.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
-     *
      * @return bool
      */
     public function hasFollower(CanFollowContract $entity)
@@ -59,8 +57,6 @@ trait CanBeFollowed
 
     /**
      * Adds the given entity as a follower of this entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -74,8 +70,8 @@ trait CanBeFollowed
         if ($followed && $followed->trashed()) {
             $followed->restore();
         } elseif (! $followed) {
-            $follower                = new Follower();
-            $follower->follower_id   = $entity->getKey();
+            $follower = new Follower();
+            $follower->follower_id = $entity->getKey();
             $follower->follower_type = $entity->getMorphClass();
 
             $this->followers()->save($follower);
@@ -86,8 +82,6 @@ trait CanBeFollowed
 
     /**
      * Adds many entities as followers of this entity.
-     *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -102,8 +96,6 @@ trait CanBeFollowed
 
     /**
      * Removes the given entity from being a follower of this entity.
-     *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -121,8 +113,6 @@ trait CanBeFollowed
     /**
      * Removes many entities from being followers of this entity.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
-     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function removeManyFollowers(Collection $entities)
@@ -136,10 +126,6 @@ trait CanBeFollowed
 
     /**
      * Finds the gained followers (created) over the given time period.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \DateTime                             $startDate
-     * @param \DateTime                             $endDate
      *
      * @return int
      */
@@ -155,10 +141,6 @@ trait CanBeFollowed
     /**
      * Finds the lost followers (deleted) over the given time period.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \DateTime                             $startDate
-     * @param \DateTime                             $endDate
-     *
      * @return int
      */
     public function scopeLostFollowers(Builder $query, DateTime $startDate, DateTime $endDate)
@@ -173,8 +155,6 @@ trait CanBeFollowed
     /**
      * Returns the given entity record if this entity is being followed by it.
      *
-     * @param \Hypefactors\Laravel\Follow\Contracts\CanFollowContract $entity
-     *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function findFollower(CanFollowContract $entity)
@@ -184,8 +164,6 @@ trait CanBeFollowed
 
     /**
      * Synchronize many entities that follows this entity.
-     *
-     * @param \Illuminate\Database\Eloquent\Collection $entities
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
